@@ -1,13 +1,15 @@
-// import {Router} from 'express'
+const {Router} = require('express') 
 
-// const router = Router()
+const router = Router()
 
-// router.get('/', (req, res) => {
-// 	res.render('index', {layout: 'main'});
-// });
+router.get('/', (req,res) =>{
+    res.render('index')
+})
 
-// router.get('/about', (req,res) => {
-//    return  res.render('about', {layout: 'main'})
-// })
+router.get('/about', (req,res) => {
+   res.render('about')
+})
 
-// export default router
+module.exports = {
+    router
+}
