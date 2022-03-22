@@ -3,6 +3,7 @@ const {engine} = require('express-handlebars')
 const {router} =require('./routes/routes') 
 const path = require('path') 
 const {mydb} = require('./database')
+const morgan = require('morgan')
 
 const app = express();
 
@@ -17,13 +18,17 @@ app.engine('hbs', engine({
 app.set('views', path.join(__dirname, 'views'))
 
 
+
+app.use(morgan('dev'))
 app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 app.use(router)
 
 
- mydb().then
-const PORT = process.env.PORT || 3000;
+mydb().then(() => {
+     const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-	console.log(`Server on port ${PORT}`);
-});
+    app.listen(PORT, () => {
+    console.log(`Server on port ${PORT}`);
+  });
+})
